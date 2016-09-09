@@ -1,0 +1,98 @@
+<?php $__env->startSection('contenedor'); ?>
+<div class="col-md-8 col-md-offset-2">
+
+<div class="col-md-12 text-center">
+	<h3 class="margintit font"><i class="menu-icon fa fa-desktop" aria-hidden="true"></i> Creacion de equipos</h3> <hr>
+</div>
+
+	<form class="form-horizontal" action="ingresar" method="POST">
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Numero serial</label>
+			<div class="col-sm-7">
+				<input type="text" required class="form-control" name="numero_serial" placeholder="Numero serial">
+
+				<?php if( $errors->has('numero_serial') ): ?>
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      <?php foreach($errors->get('numero_serial') as $error ): ?>   
+	                       <?php echo $error; ?>
+
+	                      <?php endforeach; ?>
+	                </div>
+            	<?php endif; ?>	
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Color</label>
+			<div class="col-sm-7">
+				<input type="text" required class="form-control" name="color" placeholder="Color">
+
+				<?php if( $errors->has('color') ): ?>
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      <?php foreach($errors->get('color') as $error ): ?>   
+	                       <?php echo $error; ?>
+
+	                      <?php endforeach; ?>
+	                </div>
+            	<?php endif; ?>	
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Elementos extra</label>
+			<div class="col-sm-7">
+				<input type="text" required class="form-control" name="elementos_ex" placeholder="Elementos extra">
+
+				<?php if( $errors->has('elementos_ex') ): ?>
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      <?php foreach($errors->get('elementos_ex') as $error ): ?>   
+	                       <?php echo $error; ?>
+
+	                      <?php endforeach; ?>
+	                </div>
+            	<?php endif; ?>	
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Marca</label>
+			<div class="col-sm-7">
+				<select class="form-control" id="form-field-select-2" required name="marca_id">
+				<?php foreach($marca as $marcas): ?>
+					<option value="<?php echo $marcas->id; ?>"><?php echo $marcas->descripcion; ?></option>
+				<?php endforeach; ?>
+				</select>
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Persona</label>
+			<div class="col-sm-7">
+				<select class="form-control" id="form-field-select-2" required name="persona_id">
+				<?php foreach($persona as $personas): ?>
+					<option value="<?php echo $personas->id; ?>"><?php echo $personas->primer_nombre.' '.$personas->primer_apellido; ?></option>
+				<?php endforeach; ?>
+				</select>
+				<input type="hidden" name="estado_id" value="1">
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-7 col-md-offset-3  text-center">
+				<button class="btn btn-primary btn-block">Ingresar equipo</button>
+				<a href="<?php echo asset('equipos'); ?>" class="btn btn-danger btn-block">Cancelar</a>
+			</div>
+		</div>
+	</form>
+
+	<div class="col-md-12">
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
