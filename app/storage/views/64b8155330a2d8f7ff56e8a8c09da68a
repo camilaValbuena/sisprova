@@ -1,0 +1,48 @@
+<?php $__env->startSection('contenedor'); ?>
+<br>
+ <table id="simple-table" class="table  table-bordered table-hover">
+	<thead>
+		<tr>
+			<th class="text-center">Descripción</th>
+			<th class="text-center">Estado</th>
+			<th class="text-center col-md-1">Acciones</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<form action="<?php echo $marca->id; ?>" method="POST">
+				<?php if($marca->estado_id == 1): ?>	
+					<tr>
+						<td class="text-center width-20"><input class="form-control text-center" type="text" name="descripcion" value="<?php echo $marca->descripcion; ?>"></td>	
+						</td>	
+						<td class="text-center width-20"><span class="label label-sm label-primary width-30"><?php echo $marca->estado->descripcion; ?></span></td>
+						<td class="text-center ">
+							<button class="btn btn-xs btn-success">
+								<i class="ace-icon fa fa-check bigger-120"></i>
+							</button>
+							<a href="<?php echo asset('marcas'); ?>" class="btn btn-xs btn-danger">
+								<i class="ace-icon fa fa-times bigger-120" aria-hidden="true"></i>
+							</a>
+						</td>											
+					</tr>
+				<?php endif; ?>	
+				<?php if($marca->estado_id == 2): ?>
+					<tr>
+						<td class="text-center width-20"><input type="text" name="descripcion" class="text-center" value="<?php echo $marca->descripcion; ?>"></td>
+						</td>	
+						<td class="text-center width-20"><span class="label label-sm label-danger width-30"><?php echo $marca->estado->descripcion; ?></span></td>
+						<td class="text-center">
+							<button class="btn btn-xs btn-success">
+								<i class="ace-icon fa fa-check bigger-120"></i>
+							</button>
+							<a href="<?php echo asset('marcas'); ?>" class="btn btn-xs btn-danger">
+								<i class="ace-icon fa fa-times bigger-120" aria-hidden="true"></i>
+							</a>
+						</td>											
+					</tr>
+				<?php endif; ?>
+		</form>	
+	</tbody>
+</table>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

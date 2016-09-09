@@ -1,0 +1,42 @@
+<?php $__env->startSection('contenedor'); ?>
+<br>
+ <table id="simple-table" class="table  table-bordered table-hover">
+ 	<div class="col-md-offset-11">
+ 		<a href="#" class="btn btn-primary">Registrar</a>
+ 	</div>
+ 	<br>
+	<thead>
+		<tr>
+			<th>Numero Serial</th>
+			<th>Color</th>
+			<th>Elementos Ex</th>
+			<th>Marca</th>
+			<th>Persona</th>
+			<th>Estado</th>
+			<th class="col-md-1">Acciones</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<?php foreach(Equipos::all() as $equipos): ?>
+			<tr>
+				<td><?php echo $equipos->numero_serial; ?></td>													
+				<td><?php echo $equipos->color; ?></td>													
+				<td><?php echo $equipos->elementos_ex; ?></td>													
+				<td><?php echo $equipos->marca['descripcion']; ?></td>													
+				<td><?php echo $equipos->persona['primer_nombre'].' '.$equipos->persona['primer_apellido']; ?></td>	
+				<td><?php echo $equipos->estado['descripcion']; ?></td>
+				<td class="text-center">
+					<button class="btn btn-xs btn-info">
+						<i class="ace-icon fa fa-pencil bigger-120"></i>
+					</button>
+					<button class="btn btn-xs btn-danger">
+						<i class="ace-icon fa fa-trash-o bigger-120"></i>
+					</button>
+				</td>											
+			</tr>
+		<?php endforeach; ?>		
+	</tbody>
+</table>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
