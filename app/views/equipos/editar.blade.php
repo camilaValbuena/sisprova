@@ -11,16 +11,6 @@
 			<label class="col-sm-3 control-label no-padding-right">Numero serial</label>
 			<div class="col-sm-7">
 				<input type="text" required class="form-control" name="serial" value="{{$equipo->numero_serial}}" placeholder="Numero serial">
-
-				@if( $errors->has('numero_serial') )
-	                <div class="alert alert-danger alert-dismissable marginerror">
-	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      @foreach($errors->get('numero_serial') as $error )   
-	                       {{ $error }}
-	                      @endforeach
-	                </div>
-            	@endif	
 			</div>
 		</div>
 
@@ -28,16 +18,6 @@
 			<label class="col-sm-3 control-label no-padding-right">Descripcion</label>
 			<div class="col-sm-7">
 				<textarea class="form-control resize" rows="5" name="descripcion" placeholder="Descripcion">{{$equipo->descripcion}}</textarea>
-
-				@if( $errors->has('descripcion') )
-	                <div class="alert alert-danger alert-dismissable marginerror">
-	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      @foreach($errors->get('descripcion') as $error )   
-	                       {{ $error }}
-	                      @endforeach
-	                </div>
-            	@endif	
 			</div>
 		</div>
 
@@ -45,16 +25,6 @@
 			<label class="col-sm-3 control-label no-padding-right">Color</label>
 			<div class="col-sm-7">
 				<input type="text" required class="form-control" name="color" value="{{$equipo->color}}" placeholder="Color">
-
-				@if( $errors->has('color') )
-	                <div class="alert alert-danger alert-dismissable marginerror">
-	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      @foreach($errors->get('color') as $error )   
-	                       {{ $error }}
-	                      @endforeach
-	                </div>
-            	@endif	
 			</div>	
 		</div>
 
@@ -62,16 +32,6 @@
 			<label class="col-sm-3 control-label no-padding-right">Observaciones</label>
 			<div class="col-sm-7">
 				<textarea class="form-control resize" rows="5" name="observaciones" placeholder="Observaciones">{{$equipo->observaciones}}</textarea>
-
-				@if( $errors->has('observaciones') )
-	                <div class="alert alert-danger alert-dismissable marginerror">
-	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      @foreach($errors->get('observaciones') as $error )   
-	                       {{ $error }}
-	                      @endforeach
-	                </div>
-            	@endif	
 			</div>	
 		</div>
 

@@ -10,17 +10,6 @@
 			<label class="col-sm-3 control-label no-padding-right">Numero serial</label>
 			<div class="col-sm-7">
 				<input type="text" required class="form-control" name="serial" value="<?php echo $equipo->numero_serial; ?>" placeholder="Numero serial">
-
-				<?php if( $errors->has('numero_serial') ): ?>
-	                <div class="alert alert-danger alert-dismissable marginerror">
-	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      <?php foreach($errors->get('numero_serial') as $error ): ?>   
-	                       <?php echo $error; ?>
-
-	                      <?php endforeach; ?>
-	                </div>
-            	<?php endif; ?>	
 			</div>
 		</div>
 
@@ -28,17 +17,6 @@
 			<label class="col-sm-3 control-label no-padding-right">Descripcion</label>
 			<div class="col-sm-7">
 				<textarea class="form-control resize" rows="5" name="descripcion" placeholder="Descripcion"><?php echo $equipo->descripcion; ?></textarea>
-
-				<?php if( $errors->has('descripcion') ): ?>
-	                <div class="alert alert-danger alert-dismissable marginerror">
-	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      <?php foreach($errors->get('descripcion') as $error ): ?>   
-	                       <?php echo $error; ?>
-
-	                      <?php endforeach; ?>
-	                </div>
-            	<?php endif; ?>	
 			</div>
 		</div>
 
@@ -46,17 +24,6 @@
 			<label class="col-sm-3 control-label no-padding-right">Color</label>
 			<div class="col-sm-7">
 				<input type="text" required class="form-control" name="color" value="<?php echo $equipo->color; ?>" placeholder="Color">
-
-				<?php if( $errors->has('color') ): ?>
-	                <div class="alert alert-danger alert-dismissable marginerror">
-	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      <?php foreach($errors->get('color') as $error ): ?>   
-	                       <?php echo $error; ?>
-
-	                      <?php endforeach; ?>
-	                </div>
-            	<?php endif; ?>	
 			</div>	
 		</div>
 
@@ -64,17 +31,6 @@
 			<label class="col-sm-3 control-label no-padding-right">Observaciones</label>
 			<div class="col-sm-7">
 				<textarea class="form-control resize" rows="5" name="observaciones" placeholder="Observaciones"><?php echo $equipo->observaciones; ?></textarea>
-
-				<?php if( $errors->has('observaciones') ): ?>
-	                <div class="alert alert-danger alert-dismissable marginerror">
-	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      <?php foreach($errors->get('observaciones') as $error ): ?>   
-	                       <?php echo $error; ?>
-
-	                      <?php endforeach; ?>
-	                </div>
-            	<?php endif; ?>	
 			</div>	
 		</div>
 
