@@ -139,6 +139,16 @@
 						<b class="arrow"></b>
 					</li>
 					<!-- FIN MENU MARCAS -->
+					<!-- MENU MARCAS -->
+					<li class="">
+						<a href="{{asset('roles')}}">
+							<i class="menu-icon fa fa-users" aria-hidden="true"></i>
+							<span class="menu-text">Roles</span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+					<!-- FIN MENU MARCAS -->
 
 				</ul>
 			</div>

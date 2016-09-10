@@ -34,6 +34,16 @@ Route::get('marcas/editar/{id}', 'MarcasController@obtener');
 Route::post('marcas/editar/{id}', 'MarcasController@editar');
 // FIN CRUD MARCAS
 
+//CRUD ROLES
+Route::get('roles', 'RolesController@listar');
+Route::get('roles/ingresar', 'RolesController@formulario');
+Route::post('roles/ingresar', 'RolesController@crear');
+Route::get('roles/inhabilitar/{id}', 'RolesController@inhabilitar');
+Route::get('roles/habilitar/{id}', 'RolesController@habilitar');
+Route::get('roles/editar/{id}', 'RolesController@obtener');
+Route::post('roles/editar/{id}', 'RolesController@editar');
+// FIN CRUD ROLES
+
 
 // LOGOUT SESSION DE USUARIO
 Route::get('logout', function(){
