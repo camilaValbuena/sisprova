@@ -1,11 +1,10 @@
 <?php
 	class Equipos extends Eloquent{
 		protected $table = "equipos";
-		protected $fillable = ['id', 'numero_serial', 'color', 'elementos_ex', 'marca_id', 'persona_id', 'estado_id'];
-		public $timestamps = false;
+		protected $fillable = ['id', 'numero_serial', 'descripcion', 'color', 'observaciones', 'p_marca', 'persona_id', 'p_estado'];
 	
 		public function marca(){
-			return $this->belongsTo('Marcas', 'marca_id');
+			return $this->belongsTo('Parametro', 'p_marca');
 		}
 
 		public function persona(){
@@ -13,18 +12,19 @@
 		}
 
 		public function estado(){
-			return $this->belongsTo('Estados', 'estado_id');
+			return $this->belongsTo('Parametro', 'p_estado');
 		}
 
 		public static function validacion($datos){
 			$respuesta = [];
 			$formulario = [
-			'numero_serial' => ['required','max:40'],
-			'color' => ['required','max:50'],
-			'elementos_ex' => ['required','max:50'],
-			'marca_id' => ['required','max:11'],
-			'persona_id' => ['required','max:11'],
-			'estado_id' => ['required','max:11']
+			'numero_serial' => ['required','max:255'],
+			'descripcion' => ['required','max:255'],
+			'color' => ['required','max:255'],
+			'observaciones' => ['required','max:255'],
+			'p_marca' => ['required','max:10'],
+			'persona_id' => ['required','max:10'],
+			'p_estado' => ['required','max:10']
 			];
 
 			$validator = Validator::make($datos, $formulario);

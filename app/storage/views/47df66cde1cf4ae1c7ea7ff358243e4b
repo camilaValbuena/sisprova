@@ -1,94 +1,123 @@
 <?php $__env->startSection('contenedor'); ?>
-<br>
- <table id="simple-table" class="table  table-bordered table-hover">
-	<thead>
-		<tr>
-			<th class="text-center">Numero Serial</th>
-			<th class="text-center">Color</th>
-			<th class="text-center">Elementos Ex</th>
-			<th class="text-center">Marca</th>
-			<th class="text-center">Persona</th>
-			<th class="text-center">Estado</th>
-			<th class="text-center col-md-1">Acciones</th>
-		</tr>
-	</thead>
-	
-	<tbody>
-		<form action="<?php echo $equipo->id; ?>" method="POST">
-				<?php if($equipo->estado_id == 1): ?>	
-					<tr>
-						<td class="text-center"><input class="form-control" type="text" name="serial" value="<?php echo $equipo->numero_serial; ?>"></td>
-						<td class="text-center"><input class="form-control" type="text" name="color" value="<?php echo $equipo->color; ?>"></td>
-						<td class="text-center"><input class="form-control" type="text" name="elementos" value="<?php echo $equipo->elementos_ex; ?>"></td>		
-						<td class="text-center">
+<div class="col-md-8 col-md-offset-2">
+
+<div class="col-md-12 text-center">
+	<h3 class="margintit font"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Edicion de equipos</h3> <hr>
+</div>
+
+	<form class="form-horizontal" action="<?php echo $equipo->id; ?>" method="POST">
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Numero serial</label>
+			<div class="col-sm-7">
+				<input type="text" required class="form-control" name="serial" value="<?php echo $equipo->numero_serial; ?>" placeholder="Numero serial">
+
+				<?php if( $errors->has('numero_serial') ): ?>
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      <?php foreach($errors->get('numero_serial') as $error ): ?>   
+	                       <?php echo $error; ?>
+
+	                      <?php endforeach; ?>
+	                </div>
+            	<?php endif; ?>	
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Descripcion</label>
+			<div class="col-sm-7">
+				<textarea class="form-control resize" rows="5" name="descripcion" placeholder="Descripcion"><?php echo $equipo->descripcion; ?></textarea>
+
+				<?php if( $errors->has('descripcion') ): ?>
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      <?php foreach($errors->get('descripcion') as $error ): ?>   
+	                       <?php echo $error; ?>
+
+	                      <?php endforeach; ?>
+	                </div>
+            	<?php endif; ?>	
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Color</label>
+			<div class="col-sm-7">
+				<input type="text" required class="form-control" name="color" value="<?php echo $equipo->color; ?>" placeholder="Color">
+
+				<?php if( $errors->has('color') ): ?>
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      <?php foreach($errors->get('color') as $error ): ?>   
+	                       <?php echo $error; ?>
+
+	                      <?php endforeach; ?>
+	                </div>
+            	<?php endif; ?>	
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Observaciones</label>
+			<div class="col-sm-7">
+				<textarea class="form-control resize" rows="5" name="observaciones" placeholder="Observaciones"><?php echo $equipo->observaciones; ?></textarea>
+
+				<?php if( $errors->has('observaciones') ): ?>
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      <?php foreach($errors->get('observaciones') as $error ): ?>   
+	                       <?php echo $error; ?>
+
+	                      <?php endforeach; ?>
+	                </div>
+            	<?php endif; ?>	
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Marca</label>
+			<div class="col-sm-7">
 							<select name="marca" class="form-control">
 								<?php foreach($marca as $marca): ?>
-									<?php if($marca->id == $equipo->marca_id): ?>
-										<option value="<?php echo $marca->id; ?>" selected="selected"><?php echo $marca->descripcion; ?></option>
-									 <?php endif; ?>
-									 	<option value="<?php echo $marca->id; ?>"><?php echo $marca->descripcion; ?></option>	
+									<?php if($marca->tipo_registro_id == 101): ?>
+										<?php if($marca->id == $equipo->p_marca): ?>
+											<option value="<?php echo $marca->id; ?>" selected="selected"><?php echo $marca->nombre; ?></option>
+										 <?php endif; ?>
+										 	<option value="<?php echo $marca->id; ?>"><?php echo $marca->descripcion; ?></option>	
+									<?php endif; ?>	 	
 								<?php endforeach; ?>	
-							</select>
-						</td>	
-						<td class="text-center">
+							</select>	
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Persona</label>
+			<div class="col-sm-7">
 							<select name="persona" class="form-control">
 								<?php foreach($persona as $persona): ?>
-									<?php if($persona->id == $equipo->persona_id): ?>
+									<?php if($marca->id == $equipo->persona_id): ?>
 										<option value="<?php echo $persona->id; ?>" selected="selected"><?php echo $persona->primer_nombre.' '.$persona->primer_apellido; ?></option>
 									<?php endif; ?>	
 									 	<option value="<?php echo $persona->id; ?>"><?php echo $persona->primer_nombre.' '.$persona->primer_apellido; ?></option>	
 								<?php endforeach; ?>	
 							</select>
-						</td>	
-						<td class="text-center"><span class="label label-sm label-primary width-100"><?php echo $equipo->estado->descripcion; ?></span></td>
-						<td class="text-center">
-							<button class="btn btn-xs btn-success">
-								<i class="ace-icon fa fa-check bigger-120"></i>
-							</button>
-							<a href="<?php echo asset('equipos'); ?>" class="btn btn-xs btn-danger">
-								<i class="ace-icon fa fa-times bigger-120" aria-hidden="true"></i>
-							</a>
-						</td>											
-					</tr>
-				<?php endif; ?>	
-				<?php if($equipo->estado_id == 2): ?>
-					<tr>
-						<td class="text-center"><input type="text" name="serial" value="<?php echo $equipo->numero_serial; ?>"></td>
-						<td class="text-center"><input type="text" name="color" value="<?php echo $equipo->color; ?>"></td>
-						<td class="text-center"><input type="text" name="elementos" value="<?php echo $equipo->elementos_ex; ?>"></td>		
-						<td class="text-center">
-							<select name="marca" class="form-control">
-								<?php foreach($marca as $marca): ?>
-									<?php if($marca->id == $equipo->marca_id): ?>
-										<option value="<?php echo $marca->id; ?>" selected="selected"><?php echo $marca->descripcion; ?></option>
-									<?php endif; ?>
-									 	<option value="<?php echo $marca->id; ?>"><?php echo $marca->descripcion; ?></option>	
-								<?php endforeach; ?>	
-							</select>
-						</td>	
-						<td class="text-center">
-							<select name="persona" class="form-control">
-								<?php foreach($persona as $persona): ?>
-									<?php if($persona->id == $equipo->persona_id): ?>
-										<option value="<?php echo $persona->id; ?>" selected="selected"><?php echo $persona->primer_nombre.' '.$persona->primer_apellido; ?></option>
-									<?php endif; ?>	
-									 	<option value="<?php echo $persona->id; ?>"><?php echo $persona->primer_nombre.' '.$persona->primer_apellido; ?></option>	
-								<?php endforeach; ?>	
-							</select>
-						</td>	
-						<td class="text-center"><span class="label label-sm label-danger width-100"><?php echo $equipo->estado->descripcion; ?></span></td>
-						<td class="text-center">
-							<button class="btn btn-xs btn-success">
-								<i class="ace-icon fa fa-check bigger-120"></i>
-							</button>
-							<a href="<?php echo asset('equipos'); ?>" class="btn btn-xs btn-danger">
-								<i class="ace-icon fa fa-times bigger-120" aria-hidden="true"></i>
-							</a>
-						</td>											
-					</tr>
-				<?php endif; ?>
-		</form>	
-	</tbody>
-</table>
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-7 col-md-offset-3  text-center">
+				<button class="btn btn-primary btn-block">Actualizar equipo</button>
+				<a href="<?php echo asset('equipos'); ?>" class="btn btn-danger btn-block">Cancelar</a>
+			</div>
+		</div>
+	</form>
+
+	<div class="col-md-12">
+	</div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

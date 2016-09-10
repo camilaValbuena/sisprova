@@ -3,7 +3,7 @@
 <div class="col-md-8 col-md-offset-2">
 
 <div class="col-md-12 text-center">
-	<h3 class="margintit font"><i class="menu-icon fa fa-desktop" aria-hidden="true"></i> Creacion de equipos</h3> <hr>
+	<h3 class="margintit font"><i class="fa fa-desktop fa-lg" aria-hidden="true"></i> Creacion de equipos</h3> <hr>
 </div>
 
 	<form class="form-horizontal" action="ingresar" method="POST">
@@ -17,6 +17,23 @@
 	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
 	                      @foreach($errors->get('numero_serial') as $error )   
+	                       {{ $error }}
+	                      @endforeach
+	                </div>
+            	@endif	
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Descripcion</label>
+			<div class="col-sm-7">
+				<textarea class="form-control resize" rows="5" name="descripcion" placeholder="Descripcion"></textarea>
+
+				@if( $errors->has('descripcion') )
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      @foreach($errors->get('descripcion') as $error )   
 	                       {{ $error }}
 	                      @endforeach
 	                </div>
@@ -42,15 +59,15 @@
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right">Elementos extra</label>
+			<label class="col-sm-3 control-label no-padding-right">Observaciones</label>
 			<div class="col-sm-7">
-				<input type="text" required class="form-control" name="elementos_ex" placeholder="Elementos extra">
+				<textarea class="form-control resize" rows="5" name="observaciones" placeholder="Observaciones"></textarea>
 
-				@if( $errors->has('elementos_ex') )
+				@if( $errors->has('observaciones') )
 	                <div class="alert alert-danger alert-dismissable marginerror">
 	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      @foreach($errors->get('elementos_ex') as $error )   
+	                      @foreach($errors->get('observaciones') as $error )   
 	                       {{ $error }}
 	                      @endforeach
 	                </div>
@@ -61,10 +78,12 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right">Marca</label>
 			<div class="col-sm-7">
-				<select class="form-control" id="form-field-select-2" required name="marca_id">
-				@foreach($marca as $marcas)
-					<option value="{{$marcas->id}}">{{$marcas->descripcion}}</option>
-				@endforeach
+				<select class="form-control" id="form-field-select-2" required name="p_marca">
+					@foreach($marca as $marcas)	
+						@if($marcas->tipo_registro_id == 101)
+							<option value="{{$marcas->id}}">{{$marcas->nombre}}</option>
+						@endif
+					@endforeach
 				</select>
 			</div>	
 		</div>
@@ -77,7 +96,7 @@
 					<option value="{{$personas->id}}">{{$personas->primer_nombre.' '.$personas->primer_apellido}}</option>
 				@endforeach
 				</select>
-				<input type="hidden" name="estado_id" value="1">
+				<input type="hidden" name="p_estado" value="100">
 			</div>	
 		</div>
 

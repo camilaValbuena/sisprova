@@ -2,7 +2,7 @@
 <div class="col-md-8 col-md-offset-2">
 
 <div class="col-md-12 text-center">
-	<h3 class="margintit font"><i class="menu-icon fa fa-desktop" aria-hidden="true"></i> Creacion de equipos</h3> <hr>
+	<h3 class="margintit font"><i class="fa fa-desktop fa-lg" aria-hidden="true"></i> Creacion de equipos</h3> <hr>
 </div>
 
 	<form class="form-horizontal" action="ingresar" method="POST">
@@ -16,6 +16,24 @@
 	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
 	                      <?php foreach($errors->get('numero_serial') as $error ): ?>   
+	                       <?php echo $error; ?>
+
+	                      <?php endforeach; ?>
+	                </div>
+            	<?php endif; ?>	
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Descripcion</label>
+			<div class="col-sm-7">
+				<textarea class="form-control resize" rows="5" name="descripcion" placeholder="Descripcion"></textarea>
+
+				<?php if( $errors->has('descripcion') ): ?>
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      <?php foreach($errors->get('descripcion') as $error ): ?>   
 	                       <?php echo $error; ?>
 
 	                      <?php endforeach; ?>
@@ -43,15 +61,15 @@
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right">Elementos extra</label>
+			<label class="col-sm-3 control-label no-padding-right">Observaciones</label>
 			<div class="col-sm-7">
-				<input type="text" required class="form-control" name="elementos_ex" placeholder="Elementos extra">
+				<textarea class="form-control resize" rows="5" name="observaciones" placeholder="Observaciones"></textarea>
 
-				<?php if( $errors->has('elementos_ex') ): ?>
+				<?php if( $errors->has('observaciones') ): ?>
 	                <div class="alert alert-danger alert-dismissable marginerror">
 	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-	                      <?php foreach($errors->get('elementos_ex') as $error ): ?>   
+	                      <?php foreach($errors->get('observaciones') as $error ): ?>   
 	                       <?php echo $error; ?>
 
 	                      <?php endforeach; ?>
@@ -63,10 +81,12 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right">Marca</label>
 			<div class="col-sm-7">
-				<select class="form-control" id="form-field-select-2" required name="marca_id">
-				<?php foreach($marca as $marcas): ?>
-					<option value="<?php echo $marcas->id; ?>"><?php echo $marcas->descripcion; ?></option>
-				<?php endforeach; ?>
+				<select class="form-control" id="form-field-select-2" required name="p_marca">
+					<?php foreach($marca as $marcas): ?>	
+						<?php if($marcas->tipo_registro_id == 101): ?>
+							<option value="<?php echo $marcas->id; ?>"><?php echo $marcas->nombre; ?></option>
+						<?php endif; ?>
+					<?php endforeach; ?>
 				</select>
 			</div>	
 		</div>
@@ -79,7 +99,7 @@
 					<option value="<?php echo $personas->id; ?>"><?php echo $personas->primer_nombre.' '.$personas->primer_apellido; ?></option>
 				<?php endforeach; ?>
 				</select>
-				<input type="hidden" name="estado_id" value="1">
+				<input type="hidden" name="p_estado" value="100">
 			</div>	
 		</div>
 

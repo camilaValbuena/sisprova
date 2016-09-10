@@ -6,8 +6,9 @@
 		<thead>
 			<tr>
 				<th class="text-center">NUMERO SERIAL</th>
+				<th class="text-center">DESCRIPCION</th>
 				<th class="text-center">COLOR</th>
-				<th class="text-center">ELEMENTOS EXTRA</th>
+				<th class="text-center">OBSERVACIONES</th>
 				<th class="text-center">MARCA</th>
 				<th class="text-center">PERSONA</th>
 				<th class="text-center">ESTADO</th>
@@ -17,12 +18,13 @@
 		
 		<tbody>
 			@foreach($equipo as $equipos)
-				@if($equipos->estado_id == 1)	
+				@if($equipos->p_estado == 100)	
 					<tr>
 						<td class="text-center">{{$equipos->numero_serial}}</td>													
+						<td class="text-center">{{ucwords($equipos->descripcion)}}</td>													
 						<td class="text-center">{{ucwords($equipos->color)}}</td>													
-						<td class="text-center">{{ucwords($equipos->elementos_ex)}}</td>													
-						<td class="text-center">{{ucwords($equipos->marca->descripcion)}}</td>													
+						<td class="text-center">{{ucwords($equipos->observaciones)}}</td>													
+						<td class="text-center">{{ucwords($equipos->marca->nombre)}}</td>													
 						<td class="text-center">{{ucwords($equipos->persona->primer_nombre.' '.$equipos->persona->segundo_nombre.' '.$equipos->persona->primer_apellido.' '.$equipos->persona->segundo_apellido)}}</td>	
 						<td class="text-center"><span class="label label-sm label-primary width-100">{{$equipos->estado->descripcion}}</span></td>
 						<td class="text-center">
@@ -36,10 +38,11 @@
 					</tr>
 				@else
 					<tr>
-						<td class="text-center">{{$equipos->numero_serial}}</td>													
+						<td class="text-center">{{$equipos->numero_serial}}</td>
+						<td class="text-center">{{ucwords($equipos->descripcion)}}</td>													
 						<td class="text-center">{{ucwords($equipos->color)}}</td>													
-						<td class="text-center">{{ucwords($equipos->elementos_ex)}}</td>													
-						<td class="text-center">{{ucwords($equipos->marca->descripcion)}}</td>													
+						<td class="text-center">{{ucwords($equipos->observaciones)}}</td>													
+						<td class="text-center">{{ucwords($equipos->marca->nombre)}}</td>													
 						<td class="text-center">{{ucwords($equipos->persona->primer_nombre.' '.$equipos->persona->segundo_nombre.' '.$equipos->persona->primer_apellido.' '.$equipos->persona->segundo_apellido)}}</td>	
 						<td class="text-center"><span class="label label-sm label-danger width-100">{{$equipos->estado->descripcion}}</span></td>
 						<td class="text-center">

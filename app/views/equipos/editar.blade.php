@@ -1,95 +1,119 @@
 @extends('index')
-
 @section('contenedor')
-<br>
- <table id="simple-table" class="table  table-bordered table-hover">
-	<thead>
-		<tr>
-			<th class="text-center">Numero Serial</th>
-			<th class="text-center">Color</th>
-			<th class="text-center">Elementos Ex</th>
-			<th class="text-center">Marca</th>
-			<th class="text-center">Persona</th>
-			<th class="text-center">Estado</th>
-			<th class="text-center col-md-1">Acciones</th>
-		</tr>
-	</thead>
-	
-	<tbody>
-		<form action="{{$equipo->id}}" method="POST">
-				@if($equipo->estado_id == 1)	
-					<tr>
-						<td class="text-center"><input class="form-control" type="text" name="serial" value="{{$equipo->numero_serial}}"></td>
-						<td class="text-center"><input class="form-control" type="text" name="color" value="{{$equipo->color}}"></td>
-						<td class="text-center"><input class="form-control" type="text" name="elementos" value="{{$equipo->elementos_ex}}"></td>		
-						<td class="text-center">
+<div class="col-md-8 col-md-offset-2">
+
+<div class="col-md-12 text-center">
+	<h3 class="margintit font"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Edicion de equipos</h3> <hr>
+</div>
+
+	<form class="form-horizontal" action="{{$equipo->id}}" method="POST">
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Numero serial</label>
+			<div class="col-sm-7">
+				<input type="text" required class="form-control" name="serial" value="{{$equipo->numero_serial}}" placeholder="Numero serial">
+
+				@if( $errors->has('numero_serial') )
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      @foreach($errors->get('numero_serial') as $error )   
+	                       {{ $error }}
+	                      @endforeach
+	                </div>
+            	@endif	
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Descripcion</label>
+			<div class="col-sm-7">
+				<textarea class="form-control resize" rows="5" name="descripcion" placeholder="Descripcion">{{$equipo->descripcion}}</textarea>
+
+				@if( $errors->has('descripcion') )
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      @foreach($errors->get('descripcion') as $error )   
+	                       {{ $error }}
+	                      @endforeach
+	                </div>
+            	@endif	
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Color</label>
+			<div class="col-sm-7">
+				<input type="text" required class="form-control" name="color" value="{{$equipo->color}}" placeholder="Color">
+
+				@if( $errors->has('color') )
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      @foreach($errors->get('color') as $error )   
+	                       {{ $error }}
+	                      @endforeach
+	                </div>
+            	@endif	
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Observaciones</label>
+			<div class="col-sm-7">
+				<textarea class="form-control resize" rows="5" name="observaciones" placeholder="Observaciones">{{$equipo->observaciones}}</textarea>
+
+				@if( $errors->has('observaciones') )
+	                <div class="alert alert-danger alert-dismissable marginerror">
+	                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+	                      @foreach($errors->get('observaciones') as $error )   
+	                       {{ $error }}
+	                      @endforeach
+	                </div>
+            	@endif	
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Marca</label>
+			<div class="col-sm-7">
 							<select name="marca" class="form-control">
 								@foreach($marca as $marca)
-									@if($marca->id == $equipo->marca_id)
-										<option value="{{$marca->id}}" selected="selected">{{$marca->descripcion}}</option>
-									 @endif
-									 	<option value="{{$marca->id}}">{{$marca->descripcion}}</option>	
+									@if($marca->tipo_registro_id == 101)
+										@if($marca->id == $equipo->p_marca)
+											<option value="{{$marca->id}}" selected="selected">{{$marca->nombre}}</option>
+										 @endif
+										 	<option value="{{$marca->id}}">{{$marca->descripcion}}</option>	
+									@endif	 	
 								@endforeach	
-							</select>
-						</td>	
-						<td class="text-center">
+							</select>	
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right">Persona</label>
+			<div class="col-sm-7">
 							<select name="persona" class="form-control">
 								@foreach($persona as $persona)
-									@if($persona->id == $equipo->persona_id)
+									@if($marca->id == $equipo->persona_id)
 										<option value="{{$persona->id}}" selected="selected">{{$persona->primer_nombre.' '.$persona->primer_apellido}}</option>
 									@endif	
 									 	<option value="{{$persona->id}}">{{$persona->primer_nombre.' '.$persona->primer_apellido}}</option>	
 								@endforeach	
 							</select>
-						</td>	
-						<td class="text-center"><span class="label label-sm label-primary width-100">{{$equipo->estado->descripcion}}</span></td>
-						<td class="text-center">
-							<button class="btn btn-xs btn-success">
-								<i class="ace-icon fa fa-check bigger-120"></i>
-							</button>
-							<a href="{{asset('equipos')}}" class="btn btn-xs btn-danger">
-								<i class="ace-icon fa fa-times bigger-120" aria-hidden="true"></i>
-							</a>
-						</td>											
-					</tr>
-				@endif	
-				@if($equipo->estado_id == 2)
-					<tr>
-						<td class="text-center"><input type="text" name="serial" value="{{$equipo->numero_serial}}"></td>
-						<td class="text-center"><input type="text" name="color" value="{{$equipo->color}}"></td>
-						<td class="text-center"><input type="text" name="elementos" value="{{$equipo->elementos_ex}}"></td>		
-						<td class="text-center">
-							<select name="marca" class="form-control">
-								@foreach($marca as $marca)
-									@if($marca->id == $equipo->marca_id)
-										<option value="{{$marca->id}}" selected="selected">{{$marca->descripcion}}</option>
-									@endif
-									 	<option value="{{$marca->id}}">{{$marca->descripcion}}</option>	
-								@endforeach	
-							</select>
-						</td>	
-						<td class="text-center">
-							<select name="persona" class="form-control">
-								@foreach($persona as $persona)
-									@if($persona->id == $equipo->persona_id)
-										<option value="{{$persona->id}}" selected="selected">{{$persona->primer_nombre.' '.$persona->primer_apellido}}</option>
-									@endif	
-									 	<option value="{{$persona->id}}">{{$persona->primer_nombre.' '.$persona->primer_apellido}}</option>	
-								@endforeach	
-							</select>
-						</td>	
-						<td class="text-center"><span class="label label-sm label-danger width-100">{{$equipo->estado->descripcion}}</span></td>
-						<td class="text-center">
-							<button class="btn btn-xs btn-success">
-								<i class="ace-icon fa fa-check bigger-120"></i>
-							</button>
-							<a href="{{asset('equipos')}}" class="btn btn-xs btn-danger">
-								<i class="ace-icon fa fa-times bigger-120" aria-hidden="true"></i>
-							</a>
-						</td>											
-					</tr>
-				@endif
-		</form>	
-	</tbody>
-</table>
+			</div>	
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-7 col-md-offset-3  text-center">
+				<button class="btn btn-primary btn-block">Actualizar equipo</button>
+				<a href="{{asset('equipos')}}" class="btn btn-danger btn-block">Cancelar</a>
+			</div>
+		</div>
+	</form>
+
+	<div class="col-md-12">
+	</div>
+</div>
 @stop

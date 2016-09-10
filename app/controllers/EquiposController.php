@@ -8,10 +8,10 @@
 		}
 
 		public function formulario(){
-			$marca = Marcas::all();
+			$marca = Parametro::all();
 			$persona = Personas::all();
 
-			return View::make('equipos.crear', ['marca' => $marca, 'persona' => $persona]);
+			return View::make('equipos.crear', ['persona' => $persona, 'marca' => $marca]);
 		}
 		
 		public function crear(){
@@ -26,7 +26,7 @@
 
 		public function inhabilitar($id){
 			$id = Equipos::find($id);
-			$id->estado_id = 2;
+			$id->p_estado = 101;
 			$id->save();
 
 			return Redirect::to('equipos')->with('msj1', 'Equipo inhabilitado correctamente');
@@ -34,7 +34,7 @@
 
 		public function habilitar($id){
 			$id = Equipos::find($id);
-			$id->estado_id = 1;
+			$id->p_estado = 100;
 			$id->save();
 
 			return Redirect::to('equipos')->with('msj1', 'Equipo habilitado correctamente');
@@ -42,7 +42,7 @@
 
 		public function obtener($id){
 			$equipo = Equipos::find($id);
-			$marca = Marcas::all();
+			$marca = Parametro::all();
 			$persona = Personas::all();
 
 			return View::make('equipos.editar', ['equipo' => $equipo, 'marca' => $marca, 'persona' => $persona]);
@@ -51,9 +51,10 @@
 		public function editar($id){
 			$equipo = Equipos::find($id);
 			$equipo->numero_serial = Input::get('serial');
+			$equipo->descripcion = Input::get('descripcion');
 			$equipo->color = Input::get('color');
-			$equipo->elementos_ex = Input::get('elementos');
-			$equipo->marca_id = Input::get('marca');
+			$equipo->observaciones = Input::get('observaciones');
+			$equipo->p_marca = Input::get('marca');
 			$equipo->persona_id = Input::get('persona');
 			$equipo->save();
 
